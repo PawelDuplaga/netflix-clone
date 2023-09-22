@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
         });
 
         if (existingUser) {
-            NextResponse.json({
+            return NextResponse.json({
                 message: 'Email taken'
             },{
                 status: 422
@@ -40,12 +40,13 @@ export async function POST(req: NextRequest) {
         },{
             status: 200
         })
+        
     } catch (error) {
         console.log(error);
         return NextResponse.json({
-                message: 'Email taken'
+                message: error
             },{
-                status: 422
+                status: 400
             })
         }
     }

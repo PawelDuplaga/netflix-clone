@@ -2,6 +2,6 @@ import AuthPage from "./auth/page";
 
 export default function Home() {
   return (
-      <AuthPage />   
+      <div>Logged</div>
   )
 }

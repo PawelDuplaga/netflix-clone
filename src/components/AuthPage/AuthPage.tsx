@@ -1,14 +1,19 @@
 'use client'
 
-import React, {use, useCallback, useState} from 'react'
+import React, { useCallback, useState} from 'react'
 import Image from 'next/image';
 import logoImg from 'public/logo.png';
 import InputAnim from '@/components/InputAnim/InputAnim';
 import axios from 'axios';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import ButtonGithub from '../ButtonGithub/ButtonGithub';
+import ButtonGoogle from '../ButtonGoogle/ButtonGoogle';
 
 type authVariant = 'login' | 'register';
 
 export const AuthPage = () => {
+    const router = useRouter();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -32,6 +37,21 @@ export const AuthPage = () => {
         }
     }, [email, name, password])
 
+
+    const login = useCallback(async () => {
+        try{
+            await signIn('credentials', {
+                email,
+                password,
+                redirect: false,
+                callbackUrl: '/'
+            });
+
+            router.push('/');
+        } catch (error) {
+            console.log(error)
+        }
+    }, [email, password, router])
 
     return (
         <div className="relative h-full w-full bg-[url('/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
@@ -65,9 +85,13 @@ export const AuthPage = () => {
                                     onChange={(ev : any) => setPassword(ev.target.value)}
                                     label='Password'
                                     id='passwordInput'/>
-                                <button onClick={register} className="bg-red-600 py-3 rounded-md w-full mt-10 hover:bg-red-700 transition">
+                                <button onClick={variant === 'login' ? login : register} className="bg-red-600 py-3 rounded-md w-full mt-10 hover:bg-red-700 transition">
                                     {variant === 'login' ? 'Login' : 'Sign up'}
                                 </button>
+                                <div className="flex flex-row items-center gap-4 mt-8 justify-center">
+                                    <ButtonGithub onClick={() => signIn('github', { callbackUrl: '/'})}/>
+                                    <ButtonGoogle onClick={() => signIn('google', { callbackUrl: '/'})}/>
+                                </div>
                                 <p className="text-center text-sm text-neutral-500 mt-12">
                                     {variant === 'login' ? "First time using Netflix?" : "Already have an account?"}
                                     <span onClick={toggleVariant} className="text-gray-100 ml-1 hover:underline cursor-pointer">
