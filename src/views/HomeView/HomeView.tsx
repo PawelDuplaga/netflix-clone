@@ -7,14 +7,14 @@ import LoggedAs from '@/components/LoggedAs/LoggedAs';
 export default async function HomeView() {
 
   const session = await getServerSession(authOptions);
-  if (!session) {
+  if (!session || !session?.user) {
     redirect('/auth')
   }
 
   return (
       <div className="flex flex-col gap-2">
         <LoggedAs />
-        {/* <ButtonLogout /> */}
+        <ButtonLogout />
       </div>
   )
 }

@@ -50,15 +50,13 @@ const AuthPage = () => {
             await signIn('credentials', {
                 email,
                 password,
-                redirect: false,
-                callbackUrl: '/'
+                callbackUrl: '/profiles'
             });
 
-            router.push('/');
         } catch (error) {
             console.log(error)
         }
-    }, [email, password, router])
+    }, [email, password])
 
     return (
         <div className="relative h-full w-full bg-[url('/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
@@ -99,13 +97,13 @@ const AuthPage = () => {
                                     {/* <ButtonGithub onClick={() => signIn('github', { callbackUrl: '/'})}/>
                                     <ButtonGoogle onClick={() => signIn('google', { callbackUrl: '/'})}/> */}
                                     <button 
-                                    onClick={() => signIn('github', { callbackUrl: '/'})} 
+                                    onClick={() => signIn('github', { callbackUrl: '/profiles'})} 
                                     className="w-10 h-10 bg-white text-gray-700 rounded-full flex items-center 
                                     justify-center cursor-pointer hover:opacity-75 transition">
                                         <BsGithub size={24}/>
                                     </button>
                                     <button 
-                                    onClick={() => signIn('google', { callbackUrl: '/'})}
+                                    onClick={() => signIn('google', { callbackUrl: '/profiles'})}
                                     className="w-10 h-10 bg-white rounded-full flex items-center 
                                     justify-center cursor-pointer hover:opacity-75 transition">
                                         <FcGoogle size={24}/>

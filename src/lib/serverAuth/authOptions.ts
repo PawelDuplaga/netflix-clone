@@ -7,6 +7,7 @@ import { compare } from 'bcrypt';
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { Session } from 'inspector';
 
 export const authOptions : NextAuthOptions = {
     providers:[
@@ -65,9 +66,11 @@ export const authOptions : NextAuthOptions = {
     adapter: PrismaAdapter(prismadb),
     session: {
         strategy: 'jwt',
+        maxAge: 60,
     },
     jwt: {
-        secret: process.env.NEXTAUTH_JWT_SECRET
+        maxAge: 120,
+        secret: process.env.NEXTAUTH_JWT_SECRET,      
     },
     secret: process.env.NEXTAUTH_SECRET
 }

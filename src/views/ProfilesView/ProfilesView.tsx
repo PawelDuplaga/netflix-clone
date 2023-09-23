@@ -1,17 +1,18 @@
+import ProfilesPage from '@/components/ProfilesPage';
 import { authOptions } from '@/lib/serverAuth/authOptions';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
-import React from 'react'
+
 
 const ProfilesView = async () => {
 
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session || !session?.user) {
         redirect('/auth')
     }
 
     return (
-        <div>ProfilesView</div>
+        <ProfilesPage />
     )
 }
 
