@@ -9,10 +9,15 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import ButtonGithub from '../ButtonGithub/ButtonGithub';
 import ButtonGoogle from '../ButtonGoogle/ButtonGoogle';
+import { BsGithub } from 'react-icons/bs'
+import { FcGoogle } from 'react-icons/fc'
+
 
 type authVariant = 'login' | 'register';
 
-export const AuthPage = () => {
+
+
+const AuthPage = () => {
     const router = useRouter();
 
     const [email, setEmail] = useState("");
@@ -24,6 +29,8 @@ export const AuthPage = () => {
         setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login')
     }, [])
 
+    console.log(password)
+    console.log(email)
 
     const register = useCallback(async () => {
         try {
@@ -89,8 +96,20 @@ export const AuthPage = () => {
                                     {variant === 'login' ? 'Login' : 'Sign up'}
                                 </button>
                                 <div className="flex flex-row items-center gap-4 mt-8 justify-center">
-                                    <ButtonGithub onClick={() => signIn('github', { callbackUrl: '/'})}/>
-                                    <ButtonGoogle onClick={() => signIn('google', { callbackUrl: '/'})}/>
+                                    {/* <ButtonGithub onClick={() => signIn('github', { callbackUrl: '/'})}/>
+                                    <ButtonGoogle onClick={() => signIn('google', { callbackUrl: '/'})}/> */}
+                                    <button 
+                                    onClick={() => signIn('github', { callbackUrl: '/'})} 
+                                    className="w-10 h-10 bg-white text-gray-700 rounded-full flex items-center 
+                                    justify-center cursor-pointer hover:opacity-75 transition">
+                                        <BsGithub size={24}/>
+                                    </button>
+                                    <button 
+                                    onClick={() => signIn('google', { callbackUrl: '/'})}
+                                    className="w-10 h-10 bg-white rounded-full flex items-center 
+                                    justify-center cursor-pointer hover:opacity-75 transition">
+                                        <FcGoogle size={24}/>
+                                    </button>
                                 </div>
                                 <p className="text-center text-sm text-neutral-500 mt-12">
                                     {variant === 'login' ? "First time using Netflix?" : "Already have an account?"}

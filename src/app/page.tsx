@@ -1,7 +1,2 @@
-import AuthPage from "./auth/page";
-
-export default function Home() {
-  return (
-      <div>Logged</div>
-  )
-}
+import HomeView from "@/views/HomeView";
+export default HomeView;
