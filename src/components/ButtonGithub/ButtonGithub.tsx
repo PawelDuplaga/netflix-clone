@@ -8,6 +8,9 @@ type ButtonGithubProps = {
 }
 
 const ButtonGithub = ({ onClick } : ButtonGithubProps) => {
+
+  function nothign(){}
+
   return (
     <button onClick={onClick} className="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center cursor-pointer hover:opacity-75 transition">
         <BsGithub size={24}/>
