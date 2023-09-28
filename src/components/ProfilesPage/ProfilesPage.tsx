@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import DefaultProfileImg from 'public/images/default-blue.png'
 import React from 'react'
 
@@ -10,7 +11,7 @@ const ProfilesPage = () => {
 
     const Profile = () => {
         return (
-            <div onClick={() => {}}>
+            <Link onClick={() => {}} href={'/'}>
                 <div className="group flex flex-col w-44 mx-auto">
                     <div className="w-44 h-44 rounded-md flex items-center j
                                     ustify-center border-2 border-transparent 
@@ -23,7 +24,7 @@ const ProfilesPage = () => {
                     </div>
                     <p className="text-xl text-center pt-4">Profile 1</p>
                 </div>
-            </div>
+            </Link>
         )
     }
 
