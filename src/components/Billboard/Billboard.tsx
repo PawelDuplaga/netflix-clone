@@ -17,6 +17,14 @@ const Billboard = () => {
             poster={data?.thumbnailUrl} 
             src={data?.videoUrl}>
         </video>
+        <div className="absolute top-[max(30%,54px)] md:top-[40%] ml-4 md:ml-16">
+            <h2 className="text-white text-xl sm:text-3xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
+               {data?.title} 
+            </h2>
+            <p className="text-white text-[12px] sm:text-lg md:text-xl mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl">
+                {data?.description}
+            </p>
+        </div>
 
     </div>
   )
