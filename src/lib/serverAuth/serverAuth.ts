@@ -4,7 +4,7 @@ import prismadb from '@/lib/prismaDb/prismadb';
 import { stringify } from 'querystring';
 import { authOptions } from './authOptions';
 
-const serverAuth = async (req: NextRequest) => {
+const serverAuth = async () => {
 
     const session = await getServerSession(authOptions);
 

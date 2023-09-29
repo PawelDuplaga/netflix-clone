@@ -1,10 +1,15 @@
 'use client'
 
-import React, { useCallback, useState } from 'react'
-import Image from 'next/image'
-import logoImg from '/public/logo.png'
-import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs'
-import MobileMenu from '../MobileMenu'
+import React, { useCallback, useEffect, useState } from 'react';
+import Image from 'next/image';
+import logoImg from '/public/logo.png';
+import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs';
+import BlueProfileImg from '/public/images/default-blue.png';
+import MobileMenu from '../MobileMenu';
+import AccountMenu from '../AccountMenu'
+
+
+const TOP_OFFSET = 66;
 
 interface NavbarItemProps {
     label : string
@@ -16,9 +21,29 @@ const Navbar = () => {
 
 
     const [showMobileMenu, setShowMobileMenu] = useState(false);
-    const toggleMobileMenu = useCallback(() => {
-        setShowMobileMenu((current) => !current)
+    const [showAccountMenu, setShowAccountMenu] = useState(false);
+    const [showBackground, setShowBackground] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowBackground(window.scrollY >= TOP_OFFSET);
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
     },[])
+
+    const toggleMobileMenu = useCallback(() => {
+        setShowAccountMenu(() => false)
+        setShowMobileMenu((current) => !current)
+    },[]);
+    const toggleAccountMenu = useCallback(() => {
+        setShowMobileMenu(() => false)
+        setShowAccountMenu((current) => !current)
+    },[]);
 
     const NavbarItem = ({label} : NavbarItemProps) => {
         return (
@@ -32,7 +57,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full fixed z-40">
-        <div className="px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 bg-zinc-900 bg-opacity-90">
+        <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${showBackground ? 'bg-zinc-900 bg-opacity-90' : ''}`}>
             <Image src={logoImg} alt="netflix logo" className="h-12 w-auto"/>
             <div className="flex-row ml-8 gap-7 hidden lg:flex">
                 <NavbarItem label='Home' />
@@ -44,7 +69,7 @@ const Navbar = () => {
             </div>
             <div onClick={toggleMobileMenu} className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative">
                 <p className="text-white text-sm">Browse</p>
-                <BsChevronDown classname="text-white transition"/>
+                <BsChevronDown className={`text-white transition ${showMobileMenu ? 'rotate-180' : 'rotate-0'}`}/>
                 <MobileMenu visible={showMobileMenu}/>
             </div>
             <div className="flex flex-row ml-auto gap-7 items-center">
@@ -53,6 +78,16 @@ const Navbar = () => {
                 </div>
                 <div className="text-gray-200 hober:text-gray-300 cursor-pointer">
                     <BsBell />
+                </div>
+                <div onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 cursor-pointer relative">
+                    <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
+                        <Image 
+                            src={BlueProfileImg}
+                            alt="Netflix blue profile image"
+                        />
+                    </div>
+                    <BsChevronDown className={`text-white transition ${showAccountMenu ? 'rotate-180' : 'rotate-0'}`}/>
+                    <AccountMenu visible={showAccountMenu}/>
                 </div>
 
             </div>

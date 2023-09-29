@@ -17,8 +17,9 @@ export default async function HomeView() {
   return (
       <div className="flex flex-col gap-2">
         <Navbar />
-        <LoggedAs />
-        <ButtonLogout />
+        {/* <LoggedAs />
+        <ButtonLogout /> */}
+        <Billboard />
       </div>
   )
 }
