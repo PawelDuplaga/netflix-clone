@@ -15,11 +15,7 @@ export async function GET() {
             skip: randomIndex
         });
 
-        return NextResponse.json({
-            body: randomMovies[0]
-        },{
-            status: 200
-        })
+        return NextResponse.json(randomMovies[0], {status: 200})
 
     } catch (error) {
         return NextResponse.json({

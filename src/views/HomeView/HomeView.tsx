@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/serverAuth/authOptions';
 import ButtonLogout from '@/components/ButtonLogout/ButtonLogout';
 import LoggedAs from '@/components/LoggedAs/LoggedAs';
 import Navbar from '@/components/Navbar';
+import Billboard from '@/components/Billboard';
 
 export default async function HomeView() {
 
