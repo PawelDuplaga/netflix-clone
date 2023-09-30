@@ -1,5 +1,6 @@
 
 import Image from 'next/image';
+import { BsFillPlayFill } from 'react-icons/bs'
 
 type MovieCardProps = {
     data : Record<string, any>
@@ -7,11 +8,11 @@ type MovieCardProps = {
 
 const MovieCard = ({ data } : MovieCardProps) => {
   return (
-    <div className="group bg-zinc-900 col-span relative h-[12vw]">
+    <div className="group bg-zinc-900 col-span relative h-[20vw] sm:h-[12vw]">
        <img src={data.thumbnailUrl} alt={data.title} 
             className='cursor-pointer object-cover transition duration s
             hadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-20 
-            delay-200 w-full h-[12vw]'
+            delay-200 w-full h-[20vw] sm:h-[12vw]'
         />
         <div className="opacity-0 absolute top-0 transition duration-200 z-10 invisible 
             sm:visible delay-200 w-full scale-0 group-hover:scale-110 
@@ -28,8 +29,17 @@ const MovieCard = ({ data } : MovieCardProps) => {
                     <div className="cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white 
                     rounded-full flex justify-center items-center transition 
                     hover:bg-neutral-300">
-
+                        <BsFillPlayFill className="text-gray-800 translate-x-[1px] w-[70%] h-[70%]"/>
                     </div>
+                </div>
+                <p className="text-gray-500 font-semibold mt-4">
+                    New <span className='text-white'>2023</span>
+                </p>
+                <div className='flex flex-row mt-4 gap-2 items-center'>
+                    <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
+                </div>
+                <div className='flex flex-row mt-4 gap-2 items-center'>
+                    <p className="text-white text-[10px] lg:text-sm">{data.genre}</p>
                 </div>
             </div>
         </div>
