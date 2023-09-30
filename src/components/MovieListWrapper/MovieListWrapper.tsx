@@ -14,7 +14,9 @@ const MovieListWrapper = ({ title } : MovieListWrapperProps) => {
     const { data: movies = []} = useMovieList();
 
     return (
-        <MovieList title={title} data={movies}/>
+        <div className='px-4'>
+            <MovieList title={title} data={movies}/>
+        </div>
     )
 }
 
