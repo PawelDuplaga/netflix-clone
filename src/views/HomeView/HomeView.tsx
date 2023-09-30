@@ -5,6 +5,9 @@ import ButtonLogout from '@/components/ButtonLogout/ButtonLogout';
 import LoggedAs from '@/components/LoggedAs/LoggedAs';
 import Navbar from '@/components/Navbar';
 import Billboard from '@/components/Billboard';
+import useMovieList from '@/lib/hooks/useMovieList';
+import MovieList from '@/components/MovieList';
+import MovieListWrapper from '@/components/MovieListWrapper';
 
 export default async function HomeView() {
 
@@ -14,13 +17,13 @@ export default async function HomeView() {
   }
 
 
-
   return (
       <div className="flex flex-col gap-2">
         <Navbar />
         {/* <LoggedAs />
         <ButtonLogout /> */}
         <Billboard />
+        <MovieListWrapper title="Trending Now" />
       </div>
   )
 }
