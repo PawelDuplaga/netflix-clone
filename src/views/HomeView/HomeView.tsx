@@ -20,6 +20,7 @@ export default async function HomeView() {
         <ButtonLogout /> */}
         <Billboard />
         <MovieListWrapper title="Trending Now" />
+        <MovieListWrapper title="My List" />
       </div>
   )
 }

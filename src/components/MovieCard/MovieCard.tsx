@@ -1,6 +1,7 @@
 
 import Image from 'next/image';
 import { BsFillPlayFill } from 'react-icons/bs'
+import ButtonFavourite from '../ButtonFavourite';
 
 type MovieCardProps = {
     data : Record<string, any>
@@ -31,6 +32,7 @@ const MovieCard = ({ data } : MovieCardProps) => {
                     hover:bg-neutral-300">
                         <BsFillPlayFill className="text-gray-800 translate-x-[1px] w-[70%] h-[70%]"/>
                     </div>
+                    <ButtonFavourite movieId={data?.id}/>
                 </div>
                 <p className="text-gray-500 font-semibold mt-4">
                     New <span className='text-white'>2023</span>
