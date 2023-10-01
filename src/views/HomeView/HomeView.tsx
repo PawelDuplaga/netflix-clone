@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/serverAuth/authOptions';
 import Navbar from '@/components/Navbar';
 import Billboard from '@/components/Billboard';
 import MovieListWrapper from '@/components/MovieListWrapper';
+import MovieListFavWrapper from '@/components/MovieListFavWrapper';
 
 export default async function HomeView() {
 
@@ -20,7 +21,7 @@ export default async function HomeView() {
         <ButtonLogout /> */}
         <Billboard />
         <MovieListWrapper title="Trending Now" />
-        <MovieListWrapper title="My List" />
+        <MovieListFavWrapper title="Favourites" />
       </div>
   )
 }

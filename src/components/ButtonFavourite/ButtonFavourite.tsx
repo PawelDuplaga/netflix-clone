@@ -42,6 +42,7 @@ const ButtonFavourite = ({ movieId } : ButtonFavouriteProps) => {
     <div className="cursor-pointer group/item w-6 h-6 lg:w-10 lg:h-10 
        border-white border-2 rounded-full flex justify-center items-center 
          transition hover:border-neutral-300"
+         onClick={toggleFavourites}
     >
       {isFavourite ? 
         <BiHeart className="w-[60%] h-[60%]"/> : <BiHeartCircle className="w-[60%] h-[60%]"/>}
