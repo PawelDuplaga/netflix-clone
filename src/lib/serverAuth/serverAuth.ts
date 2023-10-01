@@ -22,7 +22,6 @@ const serverAuth = async () => {
         throw new Error('Not signed in'); 
     }
 
-    console.log(currentUser)
     return{
         currentUser
     };

@@ -20,6 +20,8 @@ const ProfilesPage = () => {
                         <Image 
                             src={DefaultProfileImg}
                             alt="Netflix profile image"
+                            loading="eager"
+                            quality={90}
                         />
                     </div>
                     <p className="text-xl text-center pt-4">Profile 1</p>

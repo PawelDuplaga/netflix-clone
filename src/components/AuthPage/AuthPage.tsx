@@ -29,9 +29,6 @@ const AuthPage = () => {
         setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login')
     }, [])
 
-    console.log(password)
-    console.log(email)
-
     const register = useCallback(async () => {
         try {
             await axios.post('/api/register', {
