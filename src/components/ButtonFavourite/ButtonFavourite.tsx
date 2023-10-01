@@ -36,6 +36,7 @@ const ButtonFavourite = ({ movieId } : ButtonFavouriteProps) => {
       ...currentUser,
       favouriteIds: updatedFavouriteIds
     });
+    mutateFavourites();
   }, [movieId, currentUser, isFavourite, mutate, mutateFavourites])
 
   return (

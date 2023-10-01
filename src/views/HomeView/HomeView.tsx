@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Billboard from '@/components/Billboard';
 import MovieListWrapper from '@/components/MovieListWrapper';
 import MovieListFavWrapper from '@/components/MovieListFavWrapper';
+import Footer from '@/components/Footer';
 
 export default async function HomeView() {
 
@@ -22,6 +23,8 @@ export default async function HomeView() {
         <Billboard />
         <MovieListWrapper title="Trending Now" />
         <MovieListFavWrapper title="Favourites" />
+        <Footer />
       </div>
+    
   )
 }
