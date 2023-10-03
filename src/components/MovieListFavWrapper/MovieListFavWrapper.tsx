@@ -12,7 +12,7 @@ type MovieListFavWrapperProps = {
 const MovieListFavWrapper = ({ title } : MovieListFavWrapperProps) => {
 
     const { data: movies = []} = useFavourites();
-
+    // slow
     return (
         <div className='px-4'>
             <MovieList title={title} data={movies}/>
