@@ -12,8 +12,8 @@ type ButtonFavouriteProps = {
 
 const ButtonFavourite = ({ movieId } : ButtonFavouriteProps) => {
 
-  const { mutate: mutateFavourites } = useFavourites();
-  const { data: currentUser, mutate } = useCurrentUser();
+  const { data: favouriteMovies, mutate: mutateFavourites } = useFavourites();
+  const { data: currentUser, mutate: mutateUser } = useCurrentUser();
 
   const isFavourite = useMemo(() => {
     const list = currentUser?.favouriteIds || [];
@@ -24,6 +24,18 @@ const ButtonFavourite = ({ movieId } : ButtonFavouriteProps) => {
   const toggleFavourites = useCallback(async () => {
     let response;
 
+    //first do then check for better user experience
+    // if (!isFavourite) {
+    //   mutateFavourites(
+    //     [...favouriteMovies, movieId]
+    //   );
+    // } else {
+    //   mutateFavourites(
+    //     favouriteMovies.map((id : string) => { if (id !== movieId) return id; })
+    //   );
+    // }
+    // console.log(favouriteMovies)
+
     if (isFavourite) {
       response = await axios.delete('/api/favourite', { data : { movieId }});
     } else {
@@ -32,12 +44,12 @@ const ButtonFavourite = ({ movieId } : ButtonFavouriteProps) => {
 
     const updatedFavouriteIds = response?.data?.favouriteIds;
 
-    mutate({
+    mutateUser({
       ...currentUser,
       favouriteIds: updatedFavouriteIds
     });
     mutateFavourites();
-  }, [movieId, currentUser, isFavourite, mutate, mutateFavourites])
+  }, [movieId, currentUser, isFavourite, mutateUser, mutateFavourites])
 
   return (
     <div className="cursor-pointer group/item w-6 h-6 lg:w-10 lg:h-10 
