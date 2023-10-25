@@ -2,14 +2,20 @@ import { NextResponse, NextRequest } from "next/server";
 import prismadb from "@/lib/prismaDB";
 import serverAuth from "@/lib/serverAuth/serverAuth";
 
-
-export async function GET ({ params }: { params: { movieId: string } }) {
+export async function GET (
+    request: Request, 
+    { params }: { params: { movieId: string } }
+) {
 
     try {
         await serverAuth();
         const movieId = params.movieId;
 
-        if (typeof movieId !== 'string' || !movieId) {
+        if (typeof movieId !== 'string') {
+            throw new Error('Invalid ID');
+        }
+
+        if (!movieId){
             throw new Error('Invalid ID');
         }
 
@@ -23,6 +29,7 @@ export async function GET ({ params }: { params: { movieId: string } }) {
             throw new Error('Invalid ID')
         }
         
+        console.log(movie)
         return NextResponse.json(movie, { status: 200});
     } catch (error) {
         console.log(error);
